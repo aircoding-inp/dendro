@@ -2,9 +2,10 @@
 import io
 import json
 import os
+import unittest
 from unittest import mock
 
-from dendro import cli, companion, connect
+from dendro import cli, companion, connect, schema
 from dendro.collect import codex_session, collect
 from tests.test_companion import Base
 
@@ -26,6 +27,12 @@ def said(minute, id_, text, **fields):
 
 def done(minute, turn, text):
     return row(minute, "event_msg", type="task_complete", turn_id=turn, last_agent_message=text)
+
+
+class Times(unittest.TestCase):
+    def test_utc_may_be_written_z(self):
+        self.assertEqual(schema.moment("2026-11-06T08:00:00Z"), schema.moment("2026-11-06T08:00:00+00:00"))
+        self.assertIsNone(schema.moment(None))
 
 
 class Rollouts(Base):

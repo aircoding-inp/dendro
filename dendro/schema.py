@@ -57,8 +57,8 @@ def digest(event):
 def moment(text):
     """An ISO 8601 time with its offset, or None."""
     try:
-        when = datetime.fromisoformat(text)
-    except (TypeError, ValueError):
+        when = datetime.fromisoformat(text[:-1] + "+00:00" if text.endswith("Z") else text)  # Python 3.10 does not read Z
+    except (AttributeError, TypeError, ValueError):
         return None
     return when if when.tzinfo else None
 
