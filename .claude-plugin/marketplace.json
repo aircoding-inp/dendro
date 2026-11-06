@@ -1,0 +1,8 @@
+{
+  "name": "dendro",
+  "owner": { "name": "Sims" },
+  "description": "Dendro: a project's record that keeps itself.",
+  "plugins": [
+    { "name": "dendro", "source": "./", "description": "A project's record that keeps itself." }
+  ]
+}

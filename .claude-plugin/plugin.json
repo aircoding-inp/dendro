@@ -1,0 +1,13 @@
+{
+  "name": "dendro",
+  "displayName": "Dendro",
+  "version": "0.1.0",
+  "description": "A project's record that keeps itself: commits, file changes and sessions are collected, and the agent reads them day by day.",
+  "author": { "name": "Sims" },
+  "mcpServers": {
+    "dendro": {
+      "command": "python",
+      "args": ["${CLAUDE_PLUGIN_ROOT}", "mcp"]
+    }
+  }
+}
