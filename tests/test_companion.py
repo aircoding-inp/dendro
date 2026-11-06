@@ -24,8 +24,8 @@ class Base(unittest.TestCase):
     def setUp(self):
         tmp = tempfile.TemporaryDirectory(ignore_cleanup_errors=True)
         self.addCleanup(tmp.cleanup)
-        self.tmp = tmp.name
-        self.folder = os.path.join(tmp.name, "My Project")
+        self.tmp = os.path.realpath(tmp.name)  # as git reports it, where the temporary folder has a short name
+        self.folder = os.path.join(self.tmp, "My Project")
         os.makedirs(self.folder)
         env = mock.patch.dict(os.environ, {"DENDRO_HOME": os.path.join(tmp.name, "home"), "CLAUDE_CONFIG_DIR": os.path.join(tmp.name, "claude")})
         env.start()
